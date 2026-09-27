@@ -1,19 +1,33 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
 @layer base {
   html {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
     scroll-behavior: smooth;
     background-color: #1a0409;
     color: #fdf2f4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
-  h1, h2, h3, h4, h5, h6, .font-serif {
-    font-family: 'Playfair Display', serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-feature-settings: "liga" 1, "kern" 1;
   }
+}
 
-  .font-script {
-    font-family: 'Great Vibes', cursive;
-  }
+.font-serif {
+  font-family: var(--font-serif) !important;
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+}
+
+.font-script {
+  font-family: var(--font-script) !important;
 }
 

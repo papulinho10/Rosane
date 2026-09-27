@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Heart, Plus, Minus, ShoppingBag, Send, Check, Sparkles } from 'lucide-react';
+import { X, Plus, Minus, ShoppingBag, Send, Check, Sparkles } from 'lucide-react';
 import { Product } from '../data';
 
 interface ProductDetailModalProps {
@@ -64,9 +64,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           
-          {/* Left Column: Image in Relief */}
+          {/* Left Column: Clean 1:1 Image */}
           <div
-            className={`md:col-span-5 relative rounded-2xl overflow-hidden aspect-square shadow-[0_12px_30px_rgba(0,0,0,0.8)] bg-black/40 group border ${
+            className={`md:col-span-5 relative rounded-2xl overflow-hidden aspect-square shadow-[0_12px_30px_rgba(0,0,0,0.8)] bg-[#140207] group border ${
               product.isFeatured ? 'border-amber-400/70' : 'border-rose-700/60'
             }`}
           >
@@ -74,32 +74,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               src={product.image}
               alt={product.name}
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#150207]/80 via-transparent to-black/30" />
-
-            {/* Tag Badge */}
-            {product.tag && (
-              <div
-                className={`absolute top-3 left-3 text-xs font-extrabold px-3 py-1 rounded-full shadow-lg flex items-center gap-1.5 ${
-                  product.isFeatured
-                    ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-[#1a0308] border border-white/60'
-                    : 'bg-gradient-to-r from-rose-600 to-rose-700 text-white border border-rose-400/40'
-                }`}
-              >
-                {product.isFeatured ? (
-                  <Sparkles size={12} fill="currentColor" />
-                ) : (
-                  <Heart size={12} fill="currentColor" />
-                )}
-                <span>{product.tag}</span>
-              </div>
-            )}
-
-            {/* Price Pill */}
-            <div className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md text-white border border-rose-500/60 text-base font-black px-3.5 py-1 rounded-full shadow-lg">
-              {product.price}
-            </div>
           </div>
 
           {/* Right Column: Detailed Product Info */}
@@ -114,9 +90,18 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 </span>
               </div>
 
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
-                {product.name}
-              </h3>
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+                  {product.name}
+                </h3>
+                <span
+                  className={`font-serif text-xl sm:text-2xl font-bold shrink-0 tabular-nums ${
+                    product.isFeatured ? 'text-amber-300' : 'text-rose-300'
+                  }`}
+                >
+                  {product.price}
+                </span>
+              </div>
             </div>
 
             {/* Ingredientes & Composição */}
